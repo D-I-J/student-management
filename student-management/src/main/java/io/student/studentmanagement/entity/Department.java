@@ -8,15 +8,15 @@ public class Department extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Integer departmentId;
     private String departmentName;
 
-    public Integer getId() {
-        return id;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getDepartmentName() {
@@ -30,15 +30,15 @@ public class Department extends BaseEntity{
     public Department() {
     }
 
-    public Department(Integer id, String departmentName) {
-        this.id = id;
+    public Department(Integer departmentId, String departmentName) {
+        this.departmentId = departmentId;
         this.departmentName = departmentName;
     }
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
+        return "DepartmentService{" +
+                "departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
                 '}';
     }
