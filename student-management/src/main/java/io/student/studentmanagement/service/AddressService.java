@@ -13,7 +13,7 @@ public class AddressService {
     private AddressRepository addressRepository;
 
     public List<Address> allAddress(){
-        return addressRepository.findAll();
+        return addressRepository.findAllAndIsNotDelete();
     }
 
     public Address addAddress(Address address){
@@ -22,11 +22,13 @@ public class AddressService {
     }
 
     public Address getAddress(int id){
-        return addressRepository.findById(id).get();
+        return addressRepository.findByIdAndIsDelete(id);
     }
 
     public void deleteAddress(int id){
-        addressRepository.deleteById(id);
+        Address address = addressRepository.findById(id).get();
+        address.setDeleted(true);
+        addressRepository.save(address);
     }
 
 //    make delete by setting isDelete column to true
