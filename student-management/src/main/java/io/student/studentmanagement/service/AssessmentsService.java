@@ -14,11 +14,11 @@ public class AssessmentsService {
     private AssessmentRepository assessmentRepository;
 
     public List<Assessment> allAssessments(){
-        return assessmentRepository.findAll();
+        return assessmentRepository.findAllAndIsNotDelete();
     }
 
     public Assessment getAssessment(int id){
-        return assessmentRepository.findById(id).get();
+        return assessmentRepository.findByIdAndIsNotDelete(id);
     }
 
     public Assessment addAssessment(Assessment assessment){
@@ -27,6 +27,8 @@ public class AssessmentsService {
     }
 
     public void deleteAssessments(int id){
-        assessmentRepository.deleteById(id);
+        Assessment assessment = assessmentRepository.findById(id).get();
+        assessment.setDeleted(true);
+        assessmentRepository.save(assessment);
     }
 }
