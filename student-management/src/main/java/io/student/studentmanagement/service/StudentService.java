@@ -14,11 +14,11 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public List<Student> getAllStudents(){
-        return studentRepository.findAll();
+        return studentRepository.findAllAndIsNotDeleted();
     }
 
     public Student getStudent(int id){
-        return studentRepository.findById(id).get();
+        return studentRepository.findByIdAndIsNotDeleted(id);
     }
 
     public Student addStudent(Student student){
@@ -27,6 +27,8 @@ public class StudentService {
     }
 
     public void deleteStudent(int id){
-        studentRepository.deleteById(id);
+        Student student  = studentRepository.findById(id).get();
+        student.setDeleted(true);
+        studentRepository.save(student);
     }
 }
