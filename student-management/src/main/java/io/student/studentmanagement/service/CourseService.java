@@ -14,11 +14,11 @@ public class CourseService {
     private CourseRepository courseRepository;
 
     public List<Course> getAllCourses(){
-        return courseRepository.findAll();
+        return courseRepository.findAllAndIsNotDelete();
     }
 
     public Course getCourse(int id){
-        return courseRepository.findById(id).get();
+        return courseRepository.findByIdAndIsNotDelete(id);
     }
 
     public Course addCourse(Course course){
@@ -27,6 +27,8 @@ public class CourseService {
     }
 
     public void deleteCourse(int id){
-        courseRepository.deleteById(id);
+        Course course = courseRepository.findById(id).get();
+        course.setDeleted(true);
+        courseRepository.save(course);
     }
 }
