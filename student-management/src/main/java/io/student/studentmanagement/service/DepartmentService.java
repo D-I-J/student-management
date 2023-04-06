@@ -14,11 +14,11 @@ public class DepartmentService {
     DepartmentRepository departmentRepository;
 
     public List<Department>  allDepartments(){
-        return departmentRepository.findAll();
+        return departmentRepository.findAllAndIsNotDeleted();
     }
 
     public Department getDepartment(int id){
-        return departmentRepository.findById(id).get();
+        return departmentRepository.findByIdAndIsNotDelete(id);
     }
 
     public Department addDepartment(Department department){
@@ -27,7 +27,9 @@ public class DepartmentService {
     }
 
     public void deleteDepartment(int id){
-        departmentRepository.deleteById(id);
+        Department department = departmentRepository.findById(id).get();
+        department.setDeleted(true);
+        departmentRepository.save(department);
     }
 
 
