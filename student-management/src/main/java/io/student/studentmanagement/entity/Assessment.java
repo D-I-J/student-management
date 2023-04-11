@@ -12,6 +12,19 @@ public class Assessment extends BaseEntity{
     private String assessmentName;
     private int marks;
 
+    // relationship for Bidirectional relation for course and assessments one-to-may relationship
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+    private Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public Integer getAssessmentId() {
         return assessmentId;
     }
@@ -45,12 +58,25 @@ public class Assessment extends BaseEntity{
         this.marks = marks;
     }
 
+    public Assessment(Integer assessmentId, String assessmentName, int marks, Course course) {
+        this.assessmentId = assessmentId;
+        this.assessmentName = assessmentName;
+        this.marks = marks;
+        this.course = course;
+    }
+
     @Override
     public String toString() {
-        return "Assessment{" +
+        return "AssessmentDto{" +
                 "assessmentId=" + assessmentId +
                 ", assessmentName='" + assessmentName + '\'' +
                 ", marks=" + marks +
+                ", course=" + course +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", isDeleted=" + isDeleted +
+                ", updatedBy=" + updatedBy +
+                ", createdBy=" + createdBy +
                 '}';
     }
 }
