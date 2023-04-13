@@ -5,7 +5,6 @@ import io.student.studentmanagement.entity.Course;
 public class AssessmentDto {
     private Integer assessmentId;
     private String assessmentName;
-    private int marks;
     private Course course;
 
     public Course getCourse() {
@@ -32,18 +31,9 @@ public class AssessmentDto {
         this.assessmentName = assessmentName;
     }
 
-    public int getMarks() {
-        return marks;
-    }
-
-    public void setMarks(int marks) {
-        this.marks = marks;
-    }
-
     public AssessmentDto(Integer assessmentId, String assessmentName, int marks, Course course) {
         this.assessmentId = assessmentId;
         this.assessmentName = assessmentName;
-        this.marks = marks;
         this.course = course;
     }
 }

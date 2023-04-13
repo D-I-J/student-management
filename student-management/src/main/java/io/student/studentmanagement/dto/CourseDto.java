@@ -8,8 +8,6 @@ import java.util.List;
 public class CourseDto {
     private Integer courseId;
     private String courseName;
-    private String Grade;
-
     private List<StudentDto> students = new ArrayList<>();
 
     private Department department;
@@ -60,18 +58,9 @@ public class CourseDto {
         this.courseName = courseName;
     }
 
-    public String getGrade() {
-        return Grade;
-    }
-
-    public void setGrade(String grade) {
-        Grade = grade;
-    }
-
-    public CourseDto(Integer courseId, String courseName, String grade, List<AssessmentDto> assessments, List<StudentDto> students, Department department) {
+    public CourseDto(Integer courseId, String courseName, List<AssessmentDto> assessments, List<StudentDto> students, Department department) {
         this.courseId = courseId;
         this.courseName = courseName;
-        Grade = grade;
         this.assessments = assessments;
         this.students = students;
         this.department = department;
