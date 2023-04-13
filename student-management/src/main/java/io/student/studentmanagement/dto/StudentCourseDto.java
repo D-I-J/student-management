@@ -10,6 +10,10 @@ public class StudentCourseDto {
     private CourseDto course;
     private List<StudentCourseAssessmentDto> studentCourseAssessments = new ArrayList<>();
 
+    public StudentCourseDto() {
+
+    }
+
 
     public Integer getStudentCoursedId() {
         return studentCoursedId;

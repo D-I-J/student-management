@@ -10,6 +10,10 @@ public class StudentCourseAssessmentDto {
     private StudentCourseDto studentCourse;
     private AssessmentDto assessment;
 
+    public StudentCourseAssessmentDto() {
+
+    }
+
     public Integer getStudentCourseAssessmentId() {
         return studentCourseAssessmentId;
     }
