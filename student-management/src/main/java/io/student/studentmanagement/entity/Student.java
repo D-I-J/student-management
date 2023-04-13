@@ -25,17 +25,21 @@ public class Student extends BaseEntity{
     @JsonManagedReference
     private Address address;
 
-    // relationship for Bidirectional relation for student and courses many-to-many relationship
-    @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "student_id"),
-    inverseJoinColumns = @JoinColumn(name = "course_id"))
-    @JsonIgnoreProperties("students")
-    private List<Course> courses = new ArrayList<>();
-
     // relationship for Bidirectional relation for department and student one-to-many relationship
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @JsonIgnoreProperties("students")
     private Department department;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<StudentCourse> studentCourses = new ArrayList<>();
+
+    public List<StudentCourse> getStudentCourses() {
+        return studentCourses;
+    }
+
+    public void setStudentCourses(List<StudentCourse> studentCourses) {
+        this.studentCourses = studentCourses;
+    }
 
     public Department getDepartment() {
         return department;
@@ -51,14 +55,6 @@ public class Student extends BaseEntity{
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
     }
 
     public Integer getStudentId() {
@@ -103,26 +99,35 @@ public class Student extends BaseEntity{
         this.gender = gender;
     }
 
-    public Student(Integer studentId, String studentName, Date dob, boolean gender, Address address, List<Course> courses, Department department) {
+    public Student(Integer studentId, String studentName, Date dob, boolean gender, Address address, Department department, List<StudentCourse> studentCourses) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.dob = dob;
         this.gender = gender;
         this.address = address;
-        this.courses = courses;
+        this.department = department;
+        this.studentCourses = studentCourses;
+    }
+
+    public Student(Integer studentId, String studentName, Date dob, boolean gender, Address address, Department department) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.dob = dob;
+        this.gender = gender;
+        this.address = address;
         this.department = department;
     }
 
     @Override
     public String toString() {
-        return "StudentDto{" +
+        return "Student{" +
                 "studentId=" + studentId +
                 ", studentName='" + studentName + '\'' +
                 ", dob=" + dob +
                 ", gender=" + gender +
                 ", address=" + address +
-                ", courses=" + courses +
                 ", department=" + department +
+                ", studentCourses=" + studentCourses +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 ", isDeleted=" + isDeleted +

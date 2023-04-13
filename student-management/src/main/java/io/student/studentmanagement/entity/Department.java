@@ -1,5 +1,6 @@
 package io.student.studentmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -14,28 +15,30 @@ public class Department extends BaseEntity{
     private Integer departmentId;
     private String departmentName;
 
-    // inverse relationship for Bidirectional relation for department and student one-to-may relationship
+    // inverse relationship for Bidirectional relation for department and students one-to-may relationship
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private List<Student> student;
+    @JsonIgnoreProperties("department")
+    private List<Student> students;
 
-    // inverse relationship for Bidirectional relation for department and course one-to-may relationship
+    // inverse relationship for Bidirectional relation for department and courses one-to-may relationship
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private List<Course> course = new ArrayList<>();
+    @JsonIgnoreProperties("department")
+    private List<Course> courses = new ArrayList<>();
 
-    public List<Student> getStudent() {
-        return student;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(List<Student> student) {
-        this.student = student;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
-    public List<Course> getCourse() {
-        return course;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setCourse(List<Course> course) {
-        this.course = course;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     public Integer getDepartmentId() {
@@ -62,11 +65,11 @@ public class Department extends BaseEntity{
         this.departmentName = departmentName;
     }
 
-    public Department(Integer departmentId, String departmentName, List<Student> student, List<Course> course) {
+    public Department(Integer departmentId, String departmentName, List<Student> students, List<Course> courses) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
-        this.student = student;
-        this.course = course;
+        this.students = students;
+        this.courses = courses;
     }
 
     @Override
@@ -74,8 +77,8 @@ public class Department extends BaseEntity{
         return "Department{" +
                 "departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
-                ", student=" + student +
-                ", course=" + course +
+                ", students=" + students +
+                ", courses=" + courses +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 ", isDeleted=" + isDeleted +

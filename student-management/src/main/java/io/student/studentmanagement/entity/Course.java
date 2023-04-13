@@ -14,21 +14,28 @@ public class Course extends BaseEntity{
     @Column(name = "course_id", nullable = false)
     private Integer courseId;
     private String courseName;
-    private String Grade;
-
-    //inverse relationship for Bidirectional relation for student and courses many-to-many relationship
-    @ManyToMany(mappedBy = "courses", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("courses")
-    private List<Student> students = new ArrayList<>();
 
     // relationship for Bidirectional relation for course and department one-to-many relationship
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @JsonIgnoreProperties("courses")
     private Department department;
 
-    //inverse relationship for Bidirectional relation for course and assessments one-to-may relationship
+    //inverse relationship for Bidirectional relation for course and assessments one-to-many relationship
     @OneToMany(mappedBy = "course")
+    @JsonIgnoreProperties("course")
     private List<Assessment> assessments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<StudentCourse> studentCourses = new ArrayList<>();
+
+    public List<StudentCourse> getStudentCourses() {
+        return studentCourses;
+    }
+
+    public void setStudentCourses(List<StudentCourse> studentCourses) {
+        this.studentCourses = studentCourses;
+    }
 
     public Department getDepartment() {
         return department;
@@ -36,14 +43,6 @@ public class Course extends BaseEntity{
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
     }
 
     public List<Assessment> getAssessments() {
@@ -70,56 +69,36 @@ public class Course extends BaseEntity{
         this.courseName = courseName;
     }
 
-    public String getGrade() {
-        return Grade;
-    }
-
-    public void setGrade(String grade) {
-        Grade = grade;
-    }
-
     public Course() {
     }
 
-    public Course(Integer courseId, String courseName, String grade) {
+    public Course(Integer courseId, String courseName) {
         this.courseId = courseId;
         this.courseName = courseName;
-        Grade = grade;
     }
 
-    public Course(Integer courseId, String courseName, String grade, List<Assessment> assessments) {
+    public Course(Integer courseId, String courseName, List<Assessment> assessments) {
         this.courseId = courseId;
         this.courseName = courseName;
-        Grade = grade;
         this.assessments = assessments;
     }
 
-    public Course(Integer courseId, String courseName, String grade, List<Assessment> assessments, List<Student> students) {
+    public Course(Integer courseId, String courseName, Department department, List<Assessment> assessments, List<StudentCourse> studentCourses) {
         this.courseId = courseId;
         this.courseName = courseName;
-        Grade = grade;
-        this.assessments = assessments;
-        this.students = students;
-    }
-
-    public Course(Integer courseId, String courseName, String grade, List<Assessment> assessments, List<Student> students, Department department) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-        Grade = grade;
-        this.assessments = assessments;
-        this.students = students;
         this.department = department;
+        this.assessments = assessments;
+        this.studentCourses = studentCourses;
     }
 
     @Override
     public String toString() {
-        return "CourseDto{" +
+        return "Course{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
-                ", Grade='" + Grade + '\'' +
-                ", assessments=" + assessments +
-                ", students=" + students +
                 ", department=" + department +
+                ", assessments=" + assessments +
+                ", studentCourses=" + studentCourses +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 ", isDeleted=" + isDeleted +
