@@ -9,6 +9,10 @@ public class DepartmentDto {
     private List<StudentDto> students;
     private List<CourseDto> courses = new ArrayList<>();
 
+    public DepartmentDto() {
+
+    }
+
     public Integer getDepartmentId() {
         return departmentId;
     }

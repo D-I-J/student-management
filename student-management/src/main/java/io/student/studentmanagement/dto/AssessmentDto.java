@@ -7,6 +7,10 @@ public class AssessmentDto {
     private String assessmentName;
     private Course course;
 
+    public AssessmentDto() {
+
+    }
+
     public Course getCourse() {
         return course;
     }
