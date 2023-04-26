@@ -91,19 +91,4 @@ public class Course extends BaseEntity{
         this.studentCourses = studentCourses;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
-                ", department=" + department +
-                ", assessments=" + assessments +
-                ", studentCourses=" + studentCourses +
-                ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
-                ", isDeleted=" + isDeleted +
-                ", updatedBy=" + updatedBy +
-                ", createdBy=" + createdBy +
-                '}';
-    }
 }

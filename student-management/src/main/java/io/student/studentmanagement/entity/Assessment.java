@@ -23,12 +23,22 @@ public class Assessment extends BaseEntity{
     @JsonIgnoreProperties("assessments")
     private Course course;
 
+    private int marks;
+
     public List<StudentCourseAssessment> getStudentCourseAssessments() {
         return studentCourseAssessments;
     }
 
     public void setStudentCourseAssessments(List<StudentCourseAssessment> studentCourseAssessments) {
         this.studentCourseAssessments = studentCourseAssessments;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+
+    public void setMarks(int marks) {
+        this.marks = marks;
     }
 
     public Course getCourse() {
@@ -74,6 +84,14 @@ public class Assessment extends BaseEntity{
         this.assessmentName = assessmentName;
         this.studentCourseAssessments = studentCourseAssessments;
         this.course = course;
+    }
+
+    public Assessment(Integer assessmentId, String assessmentName, List<StudentCourseAssessment> studentCourseAssessments, Course course, int marks) {
+        this.assessmentId = assessmentId;
+        this.assessmentName = assessmentName;
+        this.studentCourseAssessments = studentCourseAssessments;
+        this.course = course;
+        this.marks = marks;
     }
 
     @Override

@@ -10,7 +10,7 @@ public class StudentCourseAssessment extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_course_assessment_id", nullable = false)
     private Integer studentCourseAssessmentId;
-    private int marks;
+    private int obtainedMarks;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "student_course_id", referencedColumnName = "student_course_id")
@@ -20,12 +20,12 @@ public class StudentCourseAssessment extends BaseEntity{
     @JoinColumn(name = "assessment_id", referencedColumnName = "assessment_id")
     private Assessment assessment;
 
-    public int getMarks() {
-        return marks;
+    public int getObtainedMarks() {
+        return obtainedMarks;
     }
 
-    public void setMarks(int marks) {
-        this.marks = marks;
+    public void setObtainedMarks(int obtainedMarks) {
+        this.obtainedMarks = obtainedMarks;
     }
 
     public StudentCourse getStudentCourse() {
@@ -55,18 +55,20 @@ public class StudentCourseAssessment extends BaseEntity{
     public StudentCourseAssessment() {
     }
 
-    public StudentCourseAssessment(Integer studentCourseAssessmentId, int marks, StudentCourse studentCourse, Assessment assessment) {
+    public StudentCourseAssessment(Integer studentCourseAssessmentId, int obtainedMarks, StudentCourse studentCourse, Assessment assessment) {
         this.studentCourseAssessmentId = studentCourseAssessmentId;
-        this.marks = marks;
+        this.obtainedMarks = obtainedMarks;
         this.studentCourse = studentCourse;
         this.assessment = assessment;
     }
+
+
 
     @Override
     public String toString() {
         return "StudentCourseAssessment{" +
                 "studentCourseAssessmentId=" + studentCourseAssessmentId +
-                ", marks=" + marks +
+                ", obtainedMarks=" + obtainedMarks +
                 ", studentCourse=" + studentCourse +
                 ", assessment=" + assessment +
                 ", createdDate=" + createdDate +

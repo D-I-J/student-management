@@ -61,6 +61,14 @@ public class StudentCourse extends BaseEntity{
         grade = grade;
     }
 
+    public List<StudentCourseAssessment> getStudentCourseAssessments() {
+        return studentCourseAssessments;
+    }
+
+    public void setStudentCourseAssessments(List<StudentCourseAssessment> studentCourseAssessments) {
+        this.studentCourseAssessments = studentCourseAssessments;
+    }
+
     public StudentCourse(Integer studentCoursedId, Student student, Course course, String grade) {
         this.studentCoursedId = studentCoursedId;
         this.student = student;
@@ -68,18 +76,11 @@ public class StudentCourse extends BaseEntity{
         grade = grade;
     }
 
-    @Override
-    public String toString() {
-        return "StudentCourse{" +
-                "studentCoursedId=" + studentCoursedId +
-                ", student=" + student +
-                ", course=" + course +
-                ", grade='" + grade + '\'' +
-                ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
-                ", isDeleted=" + isDeleted +
-                ", updatedBy=" + updatedBy +
-                ", createdBy=" + createdBy +
-                '}';
+    public StudentCourse(Integer studentCoursedId, Student student, Course course, List<StudentCourseAssessment> studentCourseAssessments, String grade) {
+        this.studentCoursedId = studentCoursedId;
+        this.student = student;
+        this.course = course;
+        this.studentCourseAssessments = studentCourseAssessments;
+        this.grade = grade;
     }
 }
