@@ -7,14 +7,14 @@ public class StudentCourseAssessmentMapper {
     public StudentCourseAssessmentDto mapTODto(StudentCourseAssessment studentCourseAssessment){
         StudentCourseAssessmentDto studentCourseAssessmentDto = new StudentCourseAssessmentDto();
         studentCourseAssessmentDto.setStudentCourseAssessmentId(studentCourseAssessment.getStudentCourseAssessmentId());
-        studentCourseAssessmentDto.setMarks(studentCourseAssessment.getMarks());
+        studentCourseAssessmentDto.setObtainedMarks(studentCourseAssessment.getObtainedMarks());
         return studentCourseAssessmentDto;
     }
 
     public StudentCourseAssessment dtoToEntity(StudentCourseAssessmentDto studentCourseAssessmentDto){
         StudentCourseAssessment studentCourseAssessment = new StudentCourseAssessment();
         studentCourseAssessment.setStudentCourseAssessmentId(studentCourseAssessmentDto.getStudentCourseAssessmentId());
-        studentCourseAssessment.setMarks(studentCourseAssessmentDto.getMarks());
+        studentCourseAssessment.setObtainedMarks(studentCourseAssessmentDto.getObtainedMarks());
         return studentCourseAssessment;
     }
 }
