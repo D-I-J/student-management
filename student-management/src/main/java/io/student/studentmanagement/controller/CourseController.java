@@ -1,5 +1,6 @@
 package io.student.studentmanagement.controller;
 
+import io.student.studentmanagement.dto.CourseDto;
 import io.student.studentmanagement.entity.Course;
 import io.student.studentmanagement.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,16 @@ public class CourseController {
     @Autowired
     CourseService courseService;
     @GetMapping
-    public List<Course> allCourses(){
+    public List<CourseDto> allCourses(){
         return courseService.getAllCourses();
     }
     @GetMapping("/{id}")
-    public Course getCourse(@PathVariable int id){
+    public CourseDto getCourse(@PathVariable int id){
         return courseService.getCourse(id);
     }
 
     @PostMapping
-    public Course addCourse(@RequestBody Course course){
+    public CourseDto addCourse(@RequestBody CourseDto course){
         return courseService.addCourse(course);
     }
 

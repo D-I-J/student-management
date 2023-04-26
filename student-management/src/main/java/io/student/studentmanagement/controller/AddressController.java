@@ -1,5 +1,6 @@
 package io.student.studentmanagement.controller;
 
+import io.student.studentmanagement.dto.AddressDto;
 import io.student.studentmanagement.entity.Address;
 import io.student.studentmanagement.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +16,17 @@ public class AddressController {
     AddressService addressService;
 
     @GetMapping
-    public List<Address> allAddress(){
+    public List<AddressDto> allAddress(){
         return addressService.allAddress();
     }
     @GetMapping("/{id}")
-    public Address getAddress(@PathVariable int id){
+    public AddressDto getAddress(@PathVariable int id){
         return addressService.getAddress(id);
     }
 
     @PostMapping
-    public Address addAddress(@RequestBody Address address){
-        return addressService.addAddress(address);
+    public AddressDto addAddress(@RequestBody AddressDto addressDto){
+        return addressService.addAddress(addressDto);
     }
 
     @DeleteMapping("/{id}")

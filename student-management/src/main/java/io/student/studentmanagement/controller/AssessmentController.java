@@ -1,5 +1,6 @@
 package io.student.studentmanagement.controller;
 
+import io.student.studentmanagement.dto.AssessmentDto;
 import io.student.studentmanagement.entity.Assessment;
 import io.student.studentmanagement.entity.Student;
 import io.student.studentmanagement.service.AssessmentsService;
@@ -16,19 +17,19 @@ public class AssessmentController {
     AssessmentsService assessmentsService;
 
     @GetMapping
-    public List<Assessment> allAssessments(){
+    public List<AssessmentDto> allAssessments(){
         return assessmentsService.allAssessments();
     }
 
     @GetMapping("/{id}")
-    public Assessment getAssessment(@PathVariable int id){
+    public AssessmentDto getAssessment(@PathVariable int id){
         return assessmentsService.getAssessment(id);
     }
 
 
     @PostMapping
-    public Assessment addAssessment(@RequestBody Assessment assessment){
-        return assessmentsService.addAssessment(assessment);
+    public AssessmentDto addAssessment(@RequestBody AssessmentDto assessmentDto){
+        return assessmentsService.addAssessment(assessmentDto);
     }
 
     @DeleteMapping("/{id}")

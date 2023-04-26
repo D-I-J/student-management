@@ -1,5 +1,6 @@
 package io.student.studentmanagement.controller;
 
+import io.student.studentmanagement.dto.DepartmentDto;
 import io.student.studentmanagement.entity.Department;
 import io.student.studentmanagement.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,16 @@ public class DepartmentController {
     DepartmentService departmentService;
 
     @GetMapping
-    public List<Department> allDepartment(){
+    public List<DepartmentDto> allDepartment(){
         return departmentService.allDepartments();
     }
     @GetMapping("/{id}")
-    public Department getDepartment(@PathVariable int id){
+    public DepartmentDto getDepartment(@PathVariable int id){
         return departmentService.getDepartment(id);
     }
 
     @PostMapping
-    public Department addDepartment(@RequestBody Department department){
+    public DepartmentDto addDepartment(@RequestBody DepartmentDto department){
         return departmentService.addDepartment(department);
     }
 
